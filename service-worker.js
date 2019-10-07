@@ -1,45 +1,47 @@
-const version = 1;
-const offlineObjects = ["./index.html", "./script.js", "./style/style.css"];
-self.addEventListener("install", function installer(event) {
+
+const filesToCache = [
+  "./index.html",
+  "./manifest.json",
+  "./script.js",
+  "./service-worker.js",
+  "./style.css"
+]
+
+const staticCacheName = "assets-v1";
+
+self.addEventListener("install", function(event){
+  console.log("service worker reporting for duty!");
   event.waitUntil(
-    caches.open(version).then(cache => {
-      return cache.addAll(offlineObjects);
+      caches.open(staticCacheName).then(function(cache){
+          return cache.addAll(filesToCache);
+      })
+  )
+})
+
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    fetch(event.request).catch(function() {
+      return caches.match(event.request);
     })
   );
 });
-self.addEventListener("activate", function activate(event) {
+
+
+self.addEventListener('activate', event => {
+  console.log('Activating new service worker...');
+
+  const cacheWhitelist = [staticCacheName];
+
   event.waitUntil(
-    caches.keys().then(keys => {
-      keys.filter(key => key != version).map(key => caches.delete(key));
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
     })
   );
 });
-var request;
-self.addEventListener("fetch", function fetcher(event) {
-request = event.request;
-  if (request.method !== "GET") {
-    event.respondWith(fetch(request));
-    return;
-  }
-  event.respondWith(caches.match(request).then(queriedCache));
-});
-function queriedCache(cached) {
-  var networked = fetch(request)
-    .then(fetchedFromNetwork, unableToResolve)
-    .catch(unableToResolve);
-  return cached || networked;
-}
-function fetchedFromNetwork(response) {
-  var clonedResponse = response.clone();
-  caches.open(version).then(function add(cache) {
-    cache.put(request, clonedResponse);
-  });
-  return response;
-}
-function unableToResolve() {
-  var url = new URL(request.url);
-  if (url.origin === location.origin) {
-    return caches.match("./index.html");
-  }
-  return offlineResponse();
-}
