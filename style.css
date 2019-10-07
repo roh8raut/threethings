@@ -33,6 +33,10 @@ body{
     color: grey;
 }
 
+.complete{
+  animation: spin .5s 1;
+}
+
 .fa-check{
     width: 45%;
     text-align: right;
@@ -44,3 +48,30 @@ body{
 .fas{
     text-align: center;
 }
+
+@keyframes spin {
+  0% {
+    font-size: 1vw;
+    transform: rotate(0deg);
+  }
+  50% {
+    font-size: 4vw;
+    transform: rotate(180deg);
+  }
+  100% {
+    font-size: 12vw;
+    transform: rotate(360deg);
+  }
+}
+
+/* @keyframes bulge {
+  0% {
+    width: 45%;
+  }
+  50% {
+    width: 65%;
+  }
+  100% {
+    width: 45%;
+  }
+} */
