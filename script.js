@@ -17,5 +17,8 @@ let second = getEl("second");
 let third = getEl("third");
 
 first.innerText = things[order[0]];
+first.dataset.objective = things[order[0]];
 second.innerText = things[order[1]];
+second.dataset.objective = things[order[1]];
 third.innerText = things[order[2]];
+third.dataset.objective = things[order[2]];

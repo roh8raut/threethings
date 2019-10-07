@@ -1,0 +1,42 @@
+body{
+    margin:0;
+    padding: 0;
+}
+
+.nav{
+    background: #2699FB;
+    color: white;
+    padding: 15px;
+    font-family: sans-serif;
+    font-size: 4vw;
+
+}
+
+.nav h1{
+    text-align: center;
+    font-weight: 100;
+}
+
+.container{
+    display: flex;
+    flex-flow: column;
+}
+
+#firstContainer, #secondContainer, #thirdContainer{
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-between;
+    font-size: 12vw;
+}
+
+.incomplete{
+    color: grey;
+}
+
+.fa-check{
+    width: 45%;
+    text-align: right;
+}
+#first, #second, #third{
+    width: 55%;
+}
