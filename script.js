@@ -7,6 +7,11 @@ while(order.length < 3){
     }
 }
 
+  const firstStreak = new Streak("first",2);
+  const secondStreak = new Streak("second");
+  const thirdStreak = new Streak("third");
+
+
 const currentTime = new Date();
 const currentDate = parseInt("1" + currentTime.getDate().toString().padStart(2, '0') + (currentTime.getMonth() + 1).toString().padStart(2, '0') + currentTime.getFullYear().toString());
 
@@ -43,31 +48,42 @@ third.dataset.objective = things[order[2]];
 
 let firstComplete= false, secondComplete= false, thirdComplete = false;
 
+
+
+
+
 function toggleComplete(el){
+
     if(el.id == "firstContainer" && !firstComplete){
         //user clicked first container, change the check to green and the text to strike-through
         markAs(first, firstCheck, "complete");
         firstComplete = true;
+        firstStreak.increase();
     }
     else if(el.id == "firstContainer" && firstComplete){
         markAs(first, firstCheck, "incomplete");
         firstComplete = false;
+        firstStreak.decrease();
     }
     else if(el.id == "secondContainer" && !secondComplete){
         markAs(second, secondCheck, "complete");
         secondComplete = true;
+        secondStreak.increase();
     }
     else if(el.id == "secondContainer" && secondComplete){
         markAs(second, secondCheck, "incomplete");
         secondComplete = false;
+        secondStreak.decrease();
     }
     else if(el.id == "thirdContainer" && !thirdComplete){
         markAs(third, thirdCheck, "complete");
         thirdComplete = true;
+        thirdStreak.increase();
     }
     else if(el.id == "thirdContainer" && thirdComplete){
         markAs(third, thirdCheck, "incomplete");
         thirdComplete = false;
+        thirdStreak.decrease();
     }
 }
 
@@ -78,5 +94,8 @@ function markAs(item, check, status) {
 
 function reset() {
   // TODO: Replace this with code that sets all tasks back to not completed (after saving is implemented)
-location.reload();
+firstStreak.resetDayStop();
+secondStreak.resetDayStop();
+thirdStreak.resetDayStop();
+//location.reload();
 }
