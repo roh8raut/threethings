@@ -32,44 +32,32 @@ let firstComplete= false, secondComplete= false, thirdComplete = false;
 function toggleComplete(el){
     if(el.id == "firstContainer" && !firstComplete){
         //user clicked first container, change the check to green and the text to strike-through
-        first.style.setProperty("text-decoration", "line-through");
-        markAs(firstCheck, "complete");
-        firstCheck.style.color = "green";
+        markAs(first, firstCheck, "complete");
         firstComplete = true;
     }
     else if(el.id == "firstContainer" && firstComplete){
-        first.style.setProperty("text-decoration", "none");
-        markAs(firstCheck, "incomplete");
-        firstCheck.style.color = "grey";
+        markAs(first, firstCheck, "incomplete");
         firstComplete = false;
     }
     else if(el.id == "secondContainer" && !secondComplete){
-        second.style.setProperty("text-decoration", "line-through");
-        markAs(secondCheck, "complete");
-        secondCheck.style.color = "green";
+        markAs(second, secondCheck, "complete");
         secondComplete = true;
     }
     else if(el.id == "secondContainer" && secondComplete){
-        second.style.setProperty("text-decoration", "none");
-        markAs(secondCheck, "incomplete");
-        secondCheck.style.color = "grey";
+        markAs(second, secondCheck, "incomplete");
         secondComplete = false;
     }
     else if(el.id == "thirdContainer" && !thirdComplete){
-        third.style.setProperty("text-decoration", "line-through");
-        markAs(thirdCheck, "complete");
-        thirdCheck.style.color = "green";
+        markAs(third, thirdCheck, "complete");
         thirdComplete = true;
     }
     else if(el.id == "thirdContainer" && thirdComplete){
-        third.style.setProperty("text-decoration", "none");
-        markAs(thirdCheck, "incomplete");
-        thirdCheck.style.color = "grey";
+        markAs(third, thirdCheck, "incomplete");
         thirdComplete = false;
     }
 }
 
-function markAs(check, status) {
-  console.log(check.className)
+function markAs(item, check, status) {
+  item.className = `${status}`;
   check.className = `fas fa-check ${status}`;
 }

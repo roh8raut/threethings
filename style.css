@@ -29,12 +29,25 @@ body{
     font-size: 12vw;
 }
 
-.incomplete{
-    color: grey;
+i.incomplete{
+  color: grey;
 }
 
-.complete{
+div.incomplete{
+  text-decoration: none;
+  color: black;
+}
+
+i.complete{
+  color: green;
   animation: spin .5s 1;
+}
+
+div.complete{
+  text-decoration: line-through;
+  text-decoration-color: black;
+  color: grey;
+  animation: strike 5s;
 }
 
 .fa-check{
@@ -61,5 +74,17 @@ body{
   100% {
     font-size: 12vw;
     transform: rotate(360deg);
+  }
+}
+
+@keyframes strike {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 50%;
+  }
+  100% {
+    opacity: 60%;
   }
 }
