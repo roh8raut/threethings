@@ -63,15 +63,3 @@ body{
     transform: rotate(360deg);
   }
 }
-
-/* @keyframes bulge {
-  0% {
-    width: 45%;
-  }
-  50% {
-    width: 65%;
-  }
-  100% {
-    width: 45%;
-  }
-} */
