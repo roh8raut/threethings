@@ -4,8 +4,22 @@ while(order.length < 3){
     let choice = Math.floor(Math.random() * things.length);
     if(!order.includes(choice)){
         order.push(choice);
-        console.log(choice);
     }
+}
+
+const currentTime = new Date();
+const currentDate = parseInt("1" + currentTime.getDate().toString().padStart(2, '0') + (currentTime.getMonth() + 1).toString().padStart(2, '0') + currentTime.getFullYear().toString());
+
+const timeStorage = new useLocalStorage('time');
+const lastOpened = timeStorage.retrieve;
+if(lastOpened.length > 0) {
+  if(lastOpened[0] != currentDate) {
+      timeStorage.delete(lastOpened[0]);
+      timeStorage.add = currentDate;
+      reset();
+  }
+} else {
+timeStorage.add = currentDate;
 }
 
 function getEl(el){
@@ -60,4 +74,9 @@ function toggleComplete(el){
 function markAs(item, check, status) {
   item.className = `${status}`;
   check.className = `fas fa-check ${status}`;
+}
+
+function reset() {
+  // TODO: Replace this with code that sets all tasks back to not completed (after saving is implemented)
+location.reload();
 }
