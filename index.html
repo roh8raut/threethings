@@ -32,11 +32,28 @@
         </div>
     </div>
     <script src="./script.js"></script>
+    <script src="./localStorage.js"></script>
+    <script>
+      // how to use the localStorage class:
+      let obj = new useLocalStorage('habits');
+      console.log(obj.retrieve); // retrieve is the getter
+      // following setters will work only if value is not present in localStorage
+      obj.add = "work";
+      obj.add = "exercise";
+      obj.add = "study";
+      console.log(obj.retrieve); // array with three values
+      if (obj.exists("work"))
+        obj.delete("work");
+      console.log(obj.retrieve); // array with two values
+      if (obj.exists("eat"))
+        obj.delete("eat"); // will never execute because it does not exist
+    </script>
     <script>
         if ("serviceWorker" in navigator) {
             navigator.serviceWorker.register("./service-worker.js");
         }
     </script>
+
 </body>
 
 </html>
