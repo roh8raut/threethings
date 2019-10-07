@@ -40,3 +40,7 @@ body{
 #first, #second, #third{
     width: 55%;
 }
+
+.fas{
+    text-align: center;
+}
