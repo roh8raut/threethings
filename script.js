@@ -7,9 +7,9 @@ while(order.length < 3){
     }
 }
 
-  const firstStreak = new Streak("first",2);
-  const secondStreak = new Streak("second");
-  const thirdStreak = new Streak("third");
+  const firstStreak = new Streak("first",0);
+  const secondStreak = new Streak("second",0);
+  const thirdStreak = new Streak("third",0);
 
 
 const currentTime = new Date();
