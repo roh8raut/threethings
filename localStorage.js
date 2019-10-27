@@ -1,7 +1,8 @@
 class useLocalStorage {
 
   constructor(name) {
-    this.name = name;
+	this.name = name;
+	console.log("this.name>.>", this.name)
   }
 
   checkAvailability() {
@@ -16,6 +17,7 @@ class useLocalStorage {
 	set add(val) {
 		if (!this.exists(val)) {
 			var tmp = this.retrieve;
+			console.log("tmp", tmp)
 			tmp.push(val);
 			window.localStorage.setItem(this.name, JSON.stringify(tmp));
       return true;

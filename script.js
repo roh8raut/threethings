@@ -53,7 +53,8 @@ let firstComplete= false, secondComplete= false, thirdComplete = false;
 
 
 function toggleComplete(el){
-
+    console.log("el>>>", el);
+    
     if(el.id == "firstContainer" && !firstComplete){
         //user clicked first container, change the check to green and the text to strike-through
         markAs(first, firstCheck, "complete");
@@ -98,4 +99,19 @@ firstStreak.resetDayStop();
 secondStreak.resetDayStop();
 thirdStreak.resetDayStop();
 //location.reload();
+}
+
+window.onload = () => {
+    const keysArray = Object.keys(localStorage);
+    let arr = [];
+    keysArray.forEach((item, index) => {
+        if (item !== "content" && JSON.parse(localStorage.getItem(item))[0] === 1) {
+            arr.push(item);
+        }
+    })
+    arr.forEach((ele) => {
+        const elem = document.querySelector("#"+ele).parentElement;
+        toggleComplete(elem);
+    })
+    
 }
